@@ -1029,7 +1029,7 @@ p.interactive()
 
 ## Shellcode-5
 
-```python=
+```python
 #!/usr/bin/python3.7
 
 from pwn import *
