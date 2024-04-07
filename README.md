@@ -1,4 +1,7 @@
 # PWN
+
+- các bạn có thể xem thêm tại: https://hackmd.io/@monstercuong7/r1qWwpRL6
+
 # PWNABLE
 
 Writeup các game trong mảng pwnable mình đã từng chơi qua từ beginner
