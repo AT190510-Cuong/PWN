@@ -1,5 +1,7 @@
 # thực hành khai thác lỗ hổng phần mềm
 
+- các bạn có thể xem thêm tại: https://hackmd.io/@monstercuong7/r1qWwpRL6
+
 ## Level00
 
 ![image](https://hackmd.io/_uploads/ry6Ju6ALp.png)
